@@ -380,7 +380,7 @@ define Device/beeline_smartbox-flash
   IMAGES += factory.trx
   IMAGE/factory.trx := append-kernel | append-ubi | check-size
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-usb3 kmod-mt7615-firmware uencrypt-mbedtls
+  DEVICE_PACKAGES := kmod-usb3 kmod-mt7615-firmware uencrypt-openssl
 endef
 TARGET_DEVICES += beeline_smartbox-flash
 
@@ -975,6 +975,16 @@ define Device/gnubee_gb-pc2
   IMAGE_SIZE := 32448k
 endef
 TARGET_DEVICES += gnubee_gb-pc2
+
+define Device/hanyang_hyc-g920
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Hanyang
+  DEVICE_MODEL := CJ-Hello HYC-G920
+  IMAGE_SIZE := 15744k
+  DEVICE_PACKAGES := kmod-usb3 kmod-mt76x2 kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += hanyang_hyc-g920
 
 define Device/h3c_tx180x
   $(Device/dsa-migration)
@@ -1604,7 +1614,7 @@ define Device/mts_wg430223
   IMAGES += factory.trx
   IMAGE/factory.trx := append-kernel | append-ubi | check-size
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-mt7615-firmware uencrypt-mbedtls
+  DEVICE_PACKAGES := kmod-mt7615-firmware uencrypt-openssl
 endef
 TARGET_DEVICES += mts_wg430223
 
